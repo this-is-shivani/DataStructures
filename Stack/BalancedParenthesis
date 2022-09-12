@@ -3,7 +3,7 @@ import java.util.*;
 
 class Result {
 
-    /* Function: isBalanced
+    /* 'isBalanced' function.
      * The function is expected to return a STRING.
      * The function accepts STRING s as parameter.
      */
@@ -24,26 +24,26 @@ class Result {
                 }
                 else
                 {
-                char checkSymbol = stack.peekLast();
+                char checkSymbol = stack.pollLast();
                 switch(ch)
                 {
                     case ')':
                     if ( checkSymbol == '('){
-                        stack.pollLast(); continue;
+                        continue;
                     }else {
                         return "NO";
                     }
                     
                     case '}':
                     if ( checkSymbol == '{'){
-                        stack.pollLast(); continue;
+                        continue;
                     }else {
                         return "NO";
                     }
                     
                     case ']':
                     if ( checkSymbol == '['){
-                        stack.pollLast(); continue;
+                        continue;
                     }else {
                         return "NO";
                     }
