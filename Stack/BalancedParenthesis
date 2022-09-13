@@ -1,65 +1,50 @@
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 class Result {
 
-    /* 'isBalanced' function.
+    /*
+     * 'isBalanced' function.
      * The function is expected to return a STRING.
      * The function accepts STRING s as parameter.
      */
     public static String isBalanced(String s) {
-        Deque<Character> stack = new ArrayDeque<Character>();
-        for(int i = 0 ; i < s.length() ; i++)
+        Deque<Character> dq = new ArrayDeque<Character>();
+        for(int i=0; i<s.length(); i++)
         {
-            char ch = s.charAt(i);
-            if(ch == '(' || ch == '{' || ch == '[')
-            {
-                stack.addLast(ch);
-            }
-            else
-            {
-                if( stack.isEmpty() )
-                {
+            char x = s.charAt(i);
+            if(x=='(' || x=='{' || x=='['){
+                 dq.addLast(x);
+            }else{
+                if(dq.isEmpty())
                     return "NO";
-                }
-                else
-                {
-                char checkSymbol = stack.pollLast();
-                switch(ch)
+                char ch = dq.pollLast();
+                switch(x)
                 {
                     case ')':
-                    if ( checkSymbol == '('){
-                        continue;
-                    }else {
-                        return "NO";
-                    }
-                    
+                        if(ch!='(')
+                            return "NO";
+                        break;
                     case '}':
-                    if ( checkSymbol == '{'){
-                        continue;
-                    }else {
-                        return "NO";
-                    }
-                    
+                        if(ch!='{')
+                            return "NO";
+                        break;
                     case ']':
-                    if ( checkSymbol == '['){
-                        continue;
-                    }else {
-                        return "NO";
-                    }
-          
-                }   
+                        if(ch!='[')
+                            return "NO";
+                        break;
                 }
             }
         }
-        if( stack.isEmpty() )
-        {
+        if(dq.isEmpty())
             return "YES";
-        }
         else
-        {
             return "NO";
-        }
     }
 
 }
