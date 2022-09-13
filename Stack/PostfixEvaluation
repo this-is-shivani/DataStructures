@@ -1,0 +1,44 @@
+import java.lang.Math;
+import java.util.Deque;
+import java.util.ArrayDeque;
+
+public class HelloWorld {
+    static int evalPostfix(String expr)
+    {
+        Deque<Integer> stack = new ArrayDeque<Integer>();
+        char ch; int x, y;
+        for(int i=0; i<expr.length(); i++)
+        {
+            ch = expr.charAt(i);
+            if(Character.isDigit(ch))
+            {
+            stack.push(Integer.parseInt(String.valueOf(ch)));
+            }
+            else
+            {
+                x = stack.poll();
+                y = stack.poll();
+                switch(ch)
+                {
+                    case '+': stack.push(x+y);
+                        break;
+                    case '-': stack.push(y-x);
+                        break;
+                    case '*': stack.push(x*y);
+                        break;
+                    case '/': stack.push(y/x);
+                        break;
+                    case '^': stack.push((int)Math.pow(y,x));
+                        break;
+                }
+            }
+        }
+        return stack.pop();
+    }
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+        String expr = "231*+9-";
+        int result = evalPostfix(expr);
+        System.out.println(result);
+    }
+}
