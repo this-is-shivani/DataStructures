@@ -113,13 +113,32 @@ public class Solution{
             // add the result of these with node itself
             return node.data + sumNode(node.left) + sumNode(node.right);
         }
+        // Function for height of Tree
+        public static int height(Node node)
+        {
+            //base case
+            if(node==null)
+                return -1;
+
+            //recursive call to left child and right child, find which one is maximum
+            // add the result of these with 1
+            int left = height(node.left);
+            int right = height(node.right);
+            if(left>=right)
+            {
+                return 1 + left;
+            }else
+            {
+                return 1 + right;
+            }
+        }
     }
     
     // Main function (Driver Code)
     public static void main(String[] a){
         int[] preOrderArray = {2,6,1,-1,-1,9,7,-1,-1,-1,3,-1,8,1,-1,-1,5,-1,-1};
         Node root = BinaryTree.createBT(preOrderArray);
-        System.out.println("Pre-order Traversal:");
+        /*System.out.println("Pre-order Traversal:");
         BinaryTree.preOrderTraversal(root);
         System.out.println();
         System.out.println("In-order Traversal:");
@@ -129,11 +148,16 @@ public class Solution{
         BinaryTree.postOrderTraversal(root);
         System.out.println();
         System.out.println("Level-order Traversal:");
-        BinaryTree.levelOrderTraversal(root);
+        BinaryTree.levelOrderTraversal(root);*/
+        System.out.println();
         int no_of_nodes = BinaryTree.countNode(root);
-        System.out.println("\nNumber of nodes in Tree: "+no_of_nodes);
+        System.out.println("Number of nodes in Tree: "+no_of_nodes);
+        System.out.println();
         int sum_of_nodes = BinaryTree.sumNode(root);
-        System.out.println("\nNumber of nodes in Tree: "+sum_of_nodes);
+        System.out.println("Number of nodes in Tree: "+sum_of_nodes);
+        System.out.println();
+        int height_of_tree = BinaryTree.height(root);
+        System.out.println("Height of Tree: "+height_of_tree);
     }
     // End of Solution
 }
