@@ -1,4 +1,6 @@
 // Binary Tree in Java
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class Solution{
     // Class representing a Node of tree (static because each node is only one per program)
@@ -62,6 +64,32 @@ public class Solution{
             preOrderTraversal(root.right);
             System.out.print(root.data+" ");
         }
+        // Function for printing level-order traversal of tree
+        public static void levelOrderTraversal(Node root)
+        {
+            Deque<Node> q = new ArrayDeque<Node>();
+            q.add(root);
+            q.add(new Node(-1));
+            while(!q.isEmpty())
+            {
+                Node currNode = q.pollFirst();
+                if(currNode.data!=-1)
+                {
+                    if(currNode.left!=null)
+                        q.add(currNode.left);
+                    if(currNode.right!=null)
+                        q.add(currNode.right);
+                }
+                
+                if(currNode.data==-1)
+                {
+                    System.out.println();
+                    q.add(new Node(-1));
+                }
+                else
+                    System.out.print(currNode.data+" ");
+            }
+        }
     }
     
     // Main function (Driver Code)
@@ -76,6 +104,9 @@ public class Solution{
         System.out.println();
         System.out.println("Post-order Traversal:");
         BinaryTree.postOrderTraversal(root);
+        System.out.println();
+        System.out.println("Level-order Traversal:");
+        BinaryTree.levelOrderTraversal(root);
     }
     // End of Solution
 }
