@@ -44,6 +44,24 @@ public class Solution{
             preOrderTraversal(root.left);
             preOrderTraversal(root.right);
         }
+        // Function for printing in-order traversal of tree
+        public static void inOrderTraversal(Node root)
+        {
+            if(root==null)
+                return;
+            preOrderTraversal(root.left);
+            System.out.print(root.data+" ");
+            preOrderTraversal(root.right);
+        }
+        // Function for printing post-order traversal of tree
+        public static void postOrderTraversal(Node root)
+        {
+            if(root==null)
+                return;
+            preOrderTraversal(root.left);
+            preOrderTraversal(root.right);
+            System.out.print(root.data+" ");
+        }
     }
     
     // Main function (Driver Code)
@@ -52,6 +70,10 @@ public class Solution{
         Node root = BinaryTree.createBT(preOrderArray);
         System.out.println("Pre-order Traversal:");
         BinaryTree.preOrderTraversal(root);
+        System.out.println();
+        BinaryTree.inOrderTraversal(root);
+        System.out.println();
+        BinaryTree.postOrderTraversal(root);
     }
     // End of Solution
 }
