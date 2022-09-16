@@ -70,9 +70,9 @@ public class Solution{
         Node root = BinaryTree.createBT(preOrderArray);
         System.out.println("Pre-order Traversal:");
         BinaryTree.preOrderTraversal(root);
-        System.out.println();
+        System.out.println("\nIn-order Traversal:");
         BinaryTree.inOrderTraversal(root);
-        System.out.println();
+        System.out.println("\nPost-order Traversal:");
         BinaryTree.postOrderTraversal(root);
     }
     // End of Solution
