@@ -102,6 +102,17 @@ public class Solution{
             // add the result of these with 1 ( 1 for counting the root)
             return 1 + countNode(node.left) + countNode(node.right);
         }
+        // Function for sum of the nodes
+        public static int sumNode(Node node)
+        {
+            //base case
+            if(node==null)
+                return 0;
+
+            //recursive call to left child and right child and
+            // add the result of these with node itself
+            return node.data + sumNode(node.left) + sumNode(node.right);
+        }
     }
     
     // Main function (Driver Code)
@@ -121,6 +132,8 @@ public class Solution{
         BinaryTree.levelOrderTraversal(root);
         int no_of_nodes = BinaryTree.countNode(root);
         System.out.println("\nNumber of nodes in Tree: "+no_of_nodes);
+        int sum_of_nodes = BinaryTree.sumNode(root);
+        System.out.println("\nNumber of nodes in Tree: "+sum_of_nodes);
     }
     // End of Solution
 }
