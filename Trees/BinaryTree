@@ -18,8 +18,9 @@ public class Solution{
     // Class representing Binary tree (static because we will have only one per program)
     public static class BinaryTree {
     // Function to create Binary Tree
-    // Static variable for index of array
+    // Static variable for index of array and count
     static int idx = 0;
+    static int count = 0;
         // Recursive function for creating Binary Tree from pre-order array
         public static Node createBT(int[] array)
         {
@@ -90,6 +91,17 @@ public class Solution{
                     System.out.print(currNode.data+" ");
             }
         }
+        // Function for counting the number of nodes
+        public static int countNode(Node node)
+        {
+            //base case
+            if(node==null)
+                return 0;
+
+            //recursive call to left child and right child and
+            // add the result of these with 1 ( 1 for counting the root)
+            return 1 + countNode(node.left) + countNode(node.right);
+        }
     }
     
     // Main function (Driver Code)
@@ -107,6 +119,8 @@ public class Solution{
         System.out.println();
         System.out.println("Level-order Traversal:");
         BinaryTree.levelOrderTraversal(root);
+        int no_of_nodes = BinaryTree.countNode(root);
+        System.out.println("\nNumber of nodes in Tree: "+no_of_nodes);
     }
     // End of Solution
 }
