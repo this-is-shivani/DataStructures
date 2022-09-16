@@ -1,0 +1,57 @@
+// Binary Tree in Java
+
+public class Solution{
+    // Class representing a Node of tree (static because each node is only one per program)
+    public static class Node {
+        int data;
+        Node left, right;
+        // Constructor
+        Node(int data){
+            this.data = data;
+            this.left = null;
+            this.right = null;
+        }
+    }
+    
+    // Class representing Binary tree (static because we will have only one per program)
+    public static class BinaryTree {
+    // Function to create Binary Tree
+    // Static variable for index of array
+    static int idx = 0;
+        // Recursive function for creating Binary Tree from pre-order array
+        public static Node createBT(int[] array)
+        {
+            Node root = new Node(array[idx]);
+            if(array[idx]==-1)
+            {
+                return null;
+            }
+            else
+            {
+                idx++;
+                root.left = createBT(array);
+                idx++;
+                root.right = createBT(array);
+            }
+            return root;
+        }
+        // Function for printing pre-order traversal of tree
+        public static void preOrderTraversal(Node root)
+        {
+            if(root==null)
+                return;
+            System.out.print(root.data+" ");
+            preOrderTraversal(root.left);
+            preOrderTraversal(root.right);
+        }
+    }
+    
+    // Main function (Driver Code)
+    public static void main(String[] a){
+        int[] preOrderArray = {2,6,1,-1,-1,9,7,-1,-1,-1,3,-1,8,1,-1,-1,5,-1,-1};
+        Node root = BinaryTree.createBT(preOrderArray);
+        System.out.println("Pre-order Traversal:");
+        BinaryTree.preOrderTraversal(root);
+    }
+    // End of Solution
+}
