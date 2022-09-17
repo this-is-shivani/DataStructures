@@ -38,16 +38,68 @@ public class Main{
     }
     
     //Search in BST
-    public static boolean search(Node root, int key){
+    public static Node search(Node root, int key){
         if(root==null)
-            return false;
+            return null;
             
         if(key<root.data)
             return search(root.left,key);
         else if(key>root.data)
             return search(root.right,key);
         else
-            return true;
+            return root;
+    }
+    
+    // Delete a node from BST
+    public static Node delete(Node root, int val){
+        if(val<root.data)
+            root.left = delete(root.left, val);
+        else if(val>root.data)
+            root.right = delete(root.right, val);
+        else
+        {
+            if(root.right==null && root.left==null)
+                return null;
+            else if(root.right==null)
+                return root.left;
+            else if(root.left==null)
+                return root.right;
+            else
+            {
+                Node IS = inorderSuccessor(root.right);
+                root.data = IS.data;
+                root.right = delete(root.right, IS.data);
+            }
+        }
+        return root;
+    }
+    
+    public static Node inorderSuccessor(Node root){
+        // Go to the left-most node (leaf node)
+        while(root.left!=null)
+            root = root.left;
+        // Return inorder successor
+        return root;
+    }
+    
+    public static void printRange(Node root, int x, int y){
+        if(root==null)
+            return;
+        if(root.data>=x && root.data<=y)
+        {
+            printRange(root.left,x,y);
+            System.out.print(root.data+" ");
+            printRange(root.right,x,y);
+        }
+        else if(x>=root.data)
+            printRange(root.right,x,y);
+        else
+            printRange(root.left,x,y);
+    }
+    
+    public static void Root2Leaf(Node root)
+    {
+        
     }
     
     //Driver code
@@ -64,8 +116,13 @@ public class Main{
     System.out.print("Inorder Traversal of BST:");
     inOrderTraversal(root);
     System.out.println();
-    System.out.print("Is 5 present in tree? "+search(root,5));
+    /*System.out.print("Is 5 present in tree? "+(search(root,5)!=null?true:false));
     System.out.println();
-    System.out.print("Is 8 present in tree? "+search(root,8));
+    System.out.print("Is 8 present in tree? "+(search(root,8)!=null?true:false));*/
+    //root = delete(root,5);
+    //System.out.print("After deleting 5:");
+    //inOrderTraversal(root);
+    System.out.print("In range:");
+    printRange(root,4,6);
     }
 }
