@@ -37,6 +37,19 @@ public class Main{
         
     }
     
+    //Search in BST
+    public static boolean search(Node root, int key){
+        if(root==null)
+            return false;
+            
+        if(key<root.data)
+            return search(root.left,key);
+        else if(key>root.data)
+            return search(root.right,key);
+        else
+            return true;
+    }
+    
     //Driver code
     public static void main(String[] a){
     int[] array = {1,3,4,5,7,9};
@@ -50,5 +63,9 @@ public class Main{
     // Print inorder traversal
     System.out.print("Inorder Traversal of BST:");
     inOrderTraversal(root);
+    System.out.println();
+    System.out.print("Is 5 present in tree? "+search(root,5));
+    System.out.println();
+    System.out.print("Is 8 present in tree? "+search(root,8));
     }
 }
