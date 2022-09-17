@@ -1,5 +1,7 @@
 // Binary Search Tree
 // {1,3,4,5,7,9}
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class Main{
     static class Node{
@@ -97,14 +99,28 @@ public class Main{
             printRange(root.left,x,y);
     }
     
-    public static void Root2Leaf(Node root)
+    // Print all the paths till leaves
+    public static void Root2Leaf(Node root, Deque<Integer> path)
     {
+        if(root==null)
+            return;
+            
+        path.add(root.data);
         
+        if(root.left==null && root.right==null)
+            System.out.println(path);
+        else
+        {
+           Root2Leaf(root.left, path);
+            Root2Leaf(root.right, path); 
+        }
+        
+        path.remove(path.size()-1);
     }
     
     //Driver code
     public static void main(String[] a){
-    int[] array = {1,3,4,5,7,9};
+    int[] array = {1,3,4,5,7,9,2,6,8};
     // Initialize root
     Node root = null;
     // Create BST
@@ -116,13 +132,19 @@ public class Main{
     System.out.print("Inorder Traversal of BST:");
     inOrderTraversal(root);
     System.out.println();
-    /*System.out.print("Is 5 present in tree? "+(search(root,5)!=null?true:false));
+    System.out.print("Is 5 present in tree? "+(search(root,5)!=null?true:false));
     System.out.println();
-    System.out.print("Is 8 present in tree? "+(search(root,8)!=null?true:false));*/
-    //root = delete(root,5);
-    //System.out.print("After deleting 5:");
-    //inOrderTraversal(root);
-    System.out.print("In range:");
-    printRange(root,4,6);
+    System.out.print("Is 10 present in tree? "+(search(root,10)!=null?true:false));
+    System.out.println();
+    root = delete(root,5);
+    System.out.print("After deleting 5:");
+    inOrderTraversal(root);
+    System.out.println();
+    System.out.print("In range (3,7):");
+    printRange(root,3,7);
+    Deque<Integer> path = new ArrayDeque<Integer>();
+    System.out.println();
+    System.out.println("Paths:");
+    Root2Leaf(root, path);
     }
 }
