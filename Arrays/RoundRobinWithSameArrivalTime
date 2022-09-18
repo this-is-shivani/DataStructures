@@ -1,0 +1,46 @@
+//Round-robin scheduling
+
+public class Solution {
+    public static void main(String[] args) {
+        int no_of_process, quantum, temp, time, count, i;
+        int[] tat = new int[10];
+        // Input:
+        quantum = 2;
+        int[] bt = {3,5,4,2};
+        int[] bt_rem = {3,5,4,2};
+        no_of_process = 4;
+        // Algorithm starts
+        time = 0;
+        while(true) {
+            for(i=0, count=0; i<no_of_process; i++) {
+                temp = quantum;
+                // Check if process is already completed
+                if(bt_rem[i]==0) {
+                    count++;
+                    continue;
+                }
+                // If not, update its bt and tat
+                if(bt_rem[i]>quantum) {
+                    bt_rem[i]-=quantum;
+                }
+                else {
+                    temp = bt_rem[i];
+                    bt_rem[i] = 0;
+                }
+                time = time + temp;
+                tat[i]=time;
+            }
+            // If for all the process burst time = 0 now
+            if(count==no_of_process)
+                break;
+        }
+
+        //Print
+        System.out.printf("PID BurstTime TurnaroundTime%n");
+        for(int j=0; j<no_of_process; j++) {
+            System.out.printf("%d       %d      %d",(j+1),bt[j],tat[j]);
+            System.out.println();
+        }
+
+    }
+}
