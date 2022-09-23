@@ -1,0 +1,25 @@
+// Deque: for implementing Stack/ Queue
+import java.util.Deque;
+import java.util.ArrayDeque;
+public class Solution {
+    public static void main(String[] args) {
+    // Create a deque
+    Deque<Integer> q = new ArrayDeque<>();
+    // Stack - LIFO 
+    for(int i=0; i<10; i+=2) //0 2 4 6 8
+        q.addLast(i);   //Push at last: addLast()
+        
+    while(!q.isEmpty()) //isEmpty()/ size()/ clear()
+        System.out.print(q.pollLast()+" ");  //Pop last: pollLast()
+    System.out.println();
+    //Queue - FIFO
+    for(int i=0; i<10; i+=2)
+        q.addLast(i);
+    while(!q.isEmpty())
+        System.out.print(q.pollFirst()+" ");  //Remove first: pollfirst()
+    // with exception - without exception
+    // addFirst()/ addLast() - offerFirst()/ offerLast()
+    // removeFirst()/ removeLast() - pollFirst()/ pollLast()
+    // getFirst()/ getLast() - peekFirst()/ peekLast()
+    }
+}
