@@ -1,0 +1,14 @@
+// Linked List
+import java.util.ArrayList;
+import java.util.List;
+
+class HelloWorld {
+    public static void main(String[] args) {
+        List<Integer> numbers = new ArrayList<>();
+        numbers.add(1);
+        System.out.println(numbers.get(0));
+        numbers.add(2);
+        System.out.println(numbers.indexOf(2));
+        // size()/ clear()/ add()/ addAll()/ set()/ remove()/ removeAll()/ contains()/ toArray()
+    }
+}
