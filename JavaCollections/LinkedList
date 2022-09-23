@@ -1,0 +1,23 @@
+// Linked List
+import java.util.LinkedList;
+
+class HelloWorld {
+    public static void main(String[] args) {
+        LinkedList<String> animals = new LinkedList<>();
+        animals.add("Dog");
+        animals.add("Cat");
+        animals.add(1,"Mouse");
+        animals.remove(2);
+        for(int i=0; i<animals.size(); i++)
+            System.out.println(i+" "+animals.get(i));
+            
+        animals.addFirst("Lizard");
+        System.out.println(animals);
+        
+        animals.pollLast();
+        System.out.println(animals);
+        // Deque methods also addFirst()/ addLast()/ pollFirst()/ pollLast()
+            
+        // contains()/ isEmpty()/ size()/ clear()/ set()
+    }
+}
