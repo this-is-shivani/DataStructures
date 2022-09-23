@@ -1,0 +1,31 @@
+// Hashmap: for creating mappings
+import java.util.HashMap;
+
+public class Solution {
+    public static void main(String[] args) {
+    String dummy ="aaabbcccdde";
+    // Create a HashMap
+    HashMap<Character, Integer> mapping = new HashMap<>();
+    // Insert values in HashMap HashMap.put(key,value)
+    // Access values in HashMap HashMap.get(key) returns value for key
+    // To get all keys: HashMap.keySet() && to get all values HashMap.values()
+    // Change value of a key HashMap.replace(key, newValue)
+    // check if key/value is present containsKey()/ containsValue()
+    // clear()/ isEmpty()/ size()
+    int count = 0;
+    for(char ch: dummy.toCharArray()){
+        if(mapping.containsKey(ch))
+        {
+            count = mapping.get(ch);
+            count++;
+            mapping.replace(ch,count);
+        }
+        else
+            mapping.put(ch,1);
+    }
+    
+    for(char ch: mapping.keySet())
+        System.out.println(ch+" "+mapping.get(ch));
+    
+    }
+}
